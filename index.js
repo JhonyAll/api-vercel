@@ -1,16 +1,21 @@
-import express from 'express'
-import { veiculos, montadoras } from 'dados.js'
+import express from 'express';
 
-const PORT = 8181
-const app = express()
+import { montadoras, veiculos } from './dados.js';
 
-app.get('/veiculos', (req, res) => {
-    res.json(veiculos)
+const app = express();
+
+app.get('/',(req,res)=>{
+    res.json({"status": "Server Okay"});
 })
-app.get('/montadoras', (req, res) => {
-    res.json(montadoras)
+app.get('/veiculos',(req,res)=>{
+    res.json(veiculos);
 })
 
-app.listen(PORT, () => {
-    console.log('Listening in the localhost:' + PORT)
+app.get('/montadoras',(req,res)=>{
+    res.json(montadoras);
 })
+
+const PORT = 3030; 
+app.listen(PORT,()=>{
+    console.log('Sistema inicializado: ', `Acesso: http://localhost:${PORT}`);
+});
